@@ -1,0 +1,2225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knychala Açougue e Empório - Cardápio Premium</title>
+    
+    <!-- Link para fontes Premium -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@1,500;1,700&display=swap" rel="stylesheet">
+    
+    <!-- Link para ícones (Font Awesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- Estilos Globais e Variáveis --- */
+        :root {
+            --bg-black: #000000;
+            --bg-card: #0c0c0c;
+            --text-white: #ffffff;
+            --text-gray: #b0b0b0;
+            --color-silver: #E0E0E0;
+            --color-silver-mid: #A9A9A9;
+            --color-silver-dark: #505050;
+            --gradient-silver: linear-gradient(135deg, #ffffff 0%, #E0E0E0 25%, #A9A9A9 50%, #707070 75%, #505050 100%);
+            --color-gold: #d4af37;
+            --neon-cyan: #00e5ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-black);
+            color: var(--text-white);
+            max-width: 500px;
+            margin: 0 auto;
+            min-height: 100vh;
+            border-left: 1px solid #1a1a1a;
+            border-right: 1px solid #1a1a1a;
+            padding-bottom: 150px;
+        }
+
+        .text-silver {
+            background: var(--gradient-silver);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .premium-italic {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 500;
+            color: var(--color-silver-mid);
+        }
+
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 25px 20px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.95), rgba(0,0,0,0));
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-container img {
+            height: 70px;
+            width: auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        .info-section {
+            padding: 0 20px 25px 20px;
+            text-align: center;
+        }
+
+        .info-section h1 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .info-section p {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            line-height: 1.5;
+            margin-bottom: 5px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background-color: #25D366;
+            color: #000;
+            font-weight: 700;
+            font-size: 0.7rem;
+            padding: 5px 15px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 10px;
+        }
+
+        .categories-container {
+            padding: 10px 0 25px 20px;
+            position: sticky;
+            top: 120px;
+            background-color: var(--bg-black);
+            z-index: 90;
+        }
+
+        .categories-scroll {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding-right: 20px;
+            scrollbar-width: none;
+            scroll-behavior: smooth;
+        }
+
+        .categories-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .category-item {
+            background-color: var(--bg-card);
+            border: 1px solid var(--color-silver-dark);
+            color: var(--text-white);
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            user-select: none;
+            flex-shrink: 0;
+        }
+
+        .category-item.active,
+        .category-item:hover {
+            background: var(--gradient-silver);
+            color: #000000;
+            border-color: transparent;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(224, 224, 224, 0.3);
+        }
+
+        .menu-container {
+            padding: 0 20px;
+        }
+
+        .menu-section {
+            display: none;
+            margin-bottom: 35px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .menu-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid var(--color-silver-dark);
+            padding-bottom: 10px;
+        }
+
+        .section-title i {
+            color: var(--color-silver-mid);
+        }
+
+        .section-image {
+            width: 100%;
+            border-radius: 12px;
+            margin: 10px 0 20px 0;
+            display: block;
+            object-fit: cover;
+            max-height: 180px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .product-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .product-card {
+            background-color: var(--bg-card);
+            border: 1px solid rgba(80, 80, 80, 0.4);
+            border-radius: 12px;
+            padding: 16px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: border-color 0.3s;
+        }
+
+        .product-card:hover {
+            border-color: var(--color-silver-mid);
+        }
+
+        .product-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .product-icon {
+            font-size: 1.6rem;
+            color: var(--color-silver-mid);
+            width: 40px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .product-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .product-name {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-white);
+            margin-bottom: 2px;
+        }
+
+        .product-price {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--color-gold);
+        }
+
+        .price-unit {
+            font-size: 0.7rem;
+            color: var(--text-gray);
+            font-weight: 400;
+        }
+
+        .product-controls {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 4px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 10px;
+        }
+
+        .qty-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .qty-group label {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .qty-input {
+            width: 64px;
+            padding: 6px 4px;
+            background-color: var(--bg-black);
+            border: 1px solid var(--color-silver-dark);
+            border-radius: 8px;
+            color: var(--text-white);
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-align: center;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .qty-input:focus {
+            border-color: var(--color-gold);
+        }
+
+        .qty-input::-webkit-inner-spin-button,
+        .qty-input::-webkit-outer-spin-button {
+            opacity: 1;
+        }
+
+        .subtotal-display {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--color-gold);
+            background: rgba(212, 175, 55, 0.08);
+            padding: 4px 14px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+
+        .subtotal-display .subtotal-label {
+            font-weight: 300;
+            font-size: 0.7rem;
+            color: var(--text-gray);
+            margin-right: 4px;
+        }
+
+        .btn-add {
+            background: var(--gradient-silver);
+            border: none;
+            color: #1a1a1a;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .btn-add:hover {
+            box-shadow: 0 4px 15px rgba(224, 224, 224, 0.4);
+        }
+
+        .btn-add:active {
+            transform: scale(0.95);
+        }
+
+        .btn-add i {
+            font-size: 0.9rem;
+        }
+
+        .btn-add.added {
+            background: #2e7d32;
+            color: white;
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        .btn-add.added i {
+            color: white;
+        }
+
+        .ad-space-link {
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: transform 0.2s;
+        }
+
+        .ad-space-link:active {
+            transform: scale(0.98);
+        }
+
+        .ad-space {
+            width: 100%;
+            position: relative;
+            background: #1a1a1a;
+            border: 2px dashed var(--color-silver-dark);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-gray);
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            overflow: hidden;
+            min-height: 80px;
+            transition: border-color 0.3s, background 0.3s;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .ad-space:hover {
+            border-color: var(--color-gold);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .ad-space::before {
+            content: "";
+            display: block;
+            padding-bottom: 28.125%;
+        }
+
+        .ad-space .ad-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.02);
+            line-height: 1.4;
+        }
+
+        .ad-space .ad-content i {
+            font-size: 1.2rem;
+            color: var(--color-gold);
+            margin-bottom: 4px;
+        }
+
+        .ad-space .ad-content .ad-title {
+            font-weight: 700;
+            color: var(--text-white);
+            font-size: 0.9rem;
+        }
+
+        .ad-space .ad-content .ad-sub {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+        }
+
+        .ad-space .ad-content .ad-whatsapp {
+            font-weight: 600;
+            color: #25D366;
+            font-size: 0.8rem;
+            margin-top: 2px;
+        }
+
+        .footer-info {
+            padding: 30px 20px 20px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .footer-info p {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            line-height: 1.8;
+            margin-bottom: 4px;
+        }
+
+        .footer-info i {
+            color: var(--color-silver-mid);
+            width: 24px;
+        }
+
+        .float-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: calc(50% - 230px);
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            z-index: 999;
+            align-items: center;
+        }
+
+        @media (max-width: 500px) {
+            .float-buttons {
+                right: 20px;
+            }
+        }
+
+        .float-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+            transition: transform 0.2s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .float-btn:active {
+            transform: scale(0.92);
+        }
+
+        .float-btn.share-btn {
+            background: var(--gradient-silver);
+            color: #1a1a1a;
+        }
+
+        .float-btn.share-btn:hover {
+            box-shadow: 0 6px 25px rgba(224, 224, 224, 0.5);
+        }
+
+        .float-btn.whatsapp-btn {
+            background-color: #25D366;
+        }
+
+        .float-btn.whatsapp-btn:hover {
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+        }
+
+        .float-btn.order-btn {
+            background: var(--neon-cyan);
+            color: #000;
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.6), 0 0 60px rgba(0, 229, 255, 0.3);
+            animation: pulse-neon 1.8s ease-in-out infinite;
+            font-size: 1.4rem;
+        }
+
+        .float-btn.order-btn:hover {
+            box-shadow: 0 0 30px rgba(0, 229, 255, 0.9), 0 0 80px rgba(0, 229, 255, 0.5);
+        }
+
+        @keyframes pulse-neon {
+            0% {
+                box-shadow: 0 0 15px rgba(0, 229, 255, 0.5), 0 0 40px rgba(0, 229, 255, 0.2);
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(0, 229, 255, 0.9), 0 0 80px rgba(0, 229, 255, 0.5);
+                transform: scale(1.05);
+            }
+            100% {
+                box-shadow: 0 0 15px rgba(0, 229, 255, 0.5), 0 0 40px rgba(0, 229, 255, 0.2);
+                transform: scale(1);
+            }
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            background-color: #ff4757;
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 700;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--bg-black);
+            box-shadow: 0 2px 8px rgba(255, 71, 87, 0.5);
+            transition: transform 0.2s;
+        }
+
+        .cart-badge.hidden {
+            display: none;
+        }
+
+        .toast-notification {
+            position: fixed;
+            bottom: 100px;
+            right: calc(50% - 230px + 70px);
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--color-gold);
+            border-radius: 12px;
+            padding: 10px 18px;
+            color: var(--text-white);
+            font-size: 0.9rem;
+            font-weight: 500;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.8);
+            transform: translateX(10px);
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: none;
+            z-index: 9999;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .toast-notification.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .toast-notification i {
+            color: var(--color-gold);
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 500px) {
+            .toast-notification {
+                right: 20px;
+                left: 20px;
+                white-space: normal;
+                bottom: 100px;
+                transform: translateY(10px);
+            }
+            .toast-notification.show {
+                transform: translateY(0);
+            }
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            border: 1px solid var(--color-silver-dark);
+            border-radius: 20px;
+            max-width: 480px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 30px 24px;
+            position: relative;
+            animation: modalFade 0.3s ease;
+            color: var(--text-white);
+        }
+
+        @keyframes modalFade {
+            from { opacity: 0; transform: scale(0.95) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .modal-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--color-gold);
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--color-silver-dark);
+            padding-bottom: 12px;
+        }
+
+        .modal-close {
+            position: sticky;
+            top: 0;
+            float: right;
+            background: none;
+            border: none;
+            color: var(--text-gray);
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: color 0.3s;
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            color: var(--text-white);
+        }
+
+        .btn-back-menu {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: transparent;
+            border: 1px solid var(--color-silver-dark);
+            border-radius: 30px;
+            color: var(--text-gray);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .btn-back-menu:hover {
+            border-color: var(--color-gold);
+            color: var(--text-white);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            gap: 8px;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .cart-item-detail {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+        }
+
+        .cart-item-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .cart-item-actions button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: transform 0.2s;
+        }
+
+        .cart-item-actions .edit-btn {
+            color: var(--color-gold);
+        }
+
+        .cart-item-actions .edit-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .cart-item-actions .delete-btn {
+            color: #ff4757;
+        }
+
+        .cart-item-actions .delete-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .cart-total {
+            text-align: right;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--color-gold);
+            margin: 15px 0 20px;
+            padding-top: 10px;
+            border-top: 2px solid var(--color-silver-dark);
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-gray);
+            margin-bottom: 4px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px 14px;
+            background: var(--bg-black);
+            border: 1px solid var(--color-silver-dark);
+            border-radius: 10px;
+            color: var(--text-white);
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: var(--color-gold);
+        }
+
+        .form-group input::placeholder {
+            color: var(--text-gray);
+        }
+
+        .form-group .radio-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 4px;
+        }
+
+        .form-group .radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 400;
+            color: var(--text-white);
+            cursor: pointer;
+        }
+
+        .form-group .radio-group input[type="radio"] {
+            width: auto;
+            accent-color: var(--color-gold);
+        }
+
+        .form-group .conditional-field {
+            margin-top: 10px;
+            padding-left: 10px;
+            border-left: 2px solid var(--color-gold);
+        }
+
+        .btn-submit-order {
+            width: 100%;
+            padding: 14px;
+            background: var(--gradient-silver);
+            border: none;
+            border-radius: 30px;
+            color: #1a1a1a;
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-submit-order:hover {
+            box-shadow: 0 4px 20px rgba(224, 224, 224, 0.4);
+            transform: scale(1.02);
+        }
+
+        .btn-submit-order:active {
+            transform: scale(0.98);
+        }
+
+        .modal-content::-webkit-scrollbar {
+            width: 4px;
+        }
+        .modal-content::-webkit-scrollbar-track {
+            background: var(--bg-black);
+        }
+        .modal-content::-webkit-scrollbar-thumb {
+            background: var(--color-silver-dark);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-black);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-silver-dark);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-silver-mid);
+        }
+
+        @media (max-width: 480px) {
+            .modal-content {
+                padding: 20px 16px;
+            }
+            .cart-item {
+                flex-wrap: wrap;
+            }
+            .cart-item-actions {
+                margin-left: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo-container">
+            <img src="https://i.ibb.co/Z65JdJyD/1000268981-removebg-preview.png" alt="Logotipo Knychala Açougue e Empório">
+        </div>
+    </header>
+
+    <!-- Informações (topo) -->
+    <section class="info-section">
+        <h1 class="text-silver">Nossa Vitrine</h1>
+        <p class="premium-italic">Excelência em Cortes & Qualidade Comercial</p>
+        <p><i class="fa-solid fa-map-marker-alt"></i> Av. Aspirante Mega, 2352</p>
+        <p><i class="fa-solid fa-clock"></i> Seg-Sáb: 08:00h às 20:00h | Dom: 08:00h às 13:00h</p>
+        <div class="status-badge">Aberto Agora</div>
+    </section>
+
+    <!-- Abas -->
+    <section class="categories-container">
+        <div class="categories-scroll" id="tabHeader">
+            <span class="category-item active" data-target="bovina">🥩 Bovina</span>
+            <span class="category-item" data-target="aves">🍗 Aves</span>
+            <span class="category-item" data-target="suina">🐷 Suína</span>
+            <span class="category-item" data-target="linguicas">🌭 Linguiças</span>
+            <span class="category-item" data-target="kithamburguer">🍔 Kit</span>
+            <span class="category-item" data-target="especiais">🛠️ Especiais</span>
+            <span class="category-item" data-target="tradicionais">🍲 Tradicionais</span>
+            <span class="category-item" data-target="emporio">🧀 Empório</span>
+        </div>
+    </section>
+
+    <!-- Cardápio -->
+    <main class="menu-container">
+
+        <!-- ==================== BOVINA ==================== -->
+        <section id="bovina" class="menu-section active">
+            <div class="section-title text-silver">
+                <i class="fa-solid fa-cow"></i> Carne Bovina
+            </div>
+            <img src="https://i.ibb.co/hJYZz5d9/IMG-20260623-WA0006-3.jpg" alt="Carne Bovina" class="section-image">
+            <div class="product-list">
+                <div class="product-card" data-price="119.99" data-name="Picanha">
+                    <div class="product-row">
+                        <i class="fa-solid fa-medal product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Picanha</div>
+                            <div class="product-price">R$ 119,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 119,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="89.99" data-name="Cupim">
+                    <div class="product-row">
+                        <i class="fa-solid fa-cut product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Cupim</div>
+                            <div class="product-price">R$ 89,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 89,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="69.99" data-name="Contra filé">
+                    <div class="product-row">
+                        <i class="fa-solid fa-utensils product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Contra filé</div>
+                            <div class="product-price">R$ 69,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 69,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="64.99" data-name="Bananinha">
+                    <div class="product-row">
+                        <i class="fa-solid fa-bolt product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Bananinha</div>
+                            <div class="product-price">R$ 64,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 64,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="64.99" data-name="Maminha da alcatra">
+                    <div class="product-row">
+                        <i class="fa-solid fa-drumstick-bite product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Maminha da alcatra</div>
+                            <div class="product-price">R$ 64,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 64,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="63.99" data-name="Alcatra">
+                    <div class="product-row">
+                        <i class="fa-solid fa-fire product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Alcatra</div>
+                            <div class="product-price">R$ 63,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 63,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="59.99" data-name="Fraldinha">
+                    <div class="product-row">
+                        <i class="fa-solid fa-bone product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Fraldinha</div>
+                            <div class="product-price">R$ 59,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 59,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="52.99" data-name="Coxão mole">
+                    <div class="product-row">
+                        <i class="fa-solid fa-hand-holding-heart product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Coxão mole</div>
+                            <div class="product-price">R$ 52,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 52,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="49.99" data-name="Paletão">
+                    <div class="product-row">
+                        <i class="fa-solid fa-weight-hanging product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Paletão</div>
+                            <div class="product-price">R$ 49,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 49,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="49.99" data-name="Ponta de picanha">
+                    <div class="product-row">
+                        <i class="fa-solid fa-crown product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Ponta de picanha</div>
+                            <div class="product-price">R$ 49,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 49,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="49.99" data-name="Patinho">
+                    <div class="product-row">
+                        <i class="fa-solid fa-horse-head product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Patinho</div>
+                            <div class="product-price">R$ 49,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 49,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="39.99" data-name="Músculo dianteiro">
+                    <div class="product-row">
+                        <i class="fa-solid fa-puzzle-piece product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Músculo dianteiro</div>
+                            <div class="product-price">R$ 39,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 39,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="39.99" data-name="Costela gaúcha">
+                    <div class="product-row">
+                        <i class="fa-solid fa-grill-hot product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Costela gaúcha</div>
+                            <div class="product-price">R$ 39,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 39,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="36.99" data-name="Acém">
+                    <div class="product-row">
+                        <i class="fa-solid fa-tag product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Acém</div>
+                            <div class="product-price">R$ 36,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 36,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+            </div>
+            <a href="https://wa.me/5534991058994" target="_blank" class="ad-space-link">
+                <div class="ad-space">
+                    <div class="ad-content">
+                        <i class="fa-solid fa-bullhorn"></i>
+                        <span class="ad-title">Destaque sua marca aqui!</span>
+                        <span class="ad-sub">Seu negócio visto por centenas de clientes todos os dias.</span>
+                        <span class="ad-whatsapp"><i class="fa-brands fa-whatsapp"></i> Fale conosco: (34) 99105-8994</span>
+                    </div>
+                </div>
+            </a>
+        </section>
+
+        <!-- ==================== AVES ==================== -->
+        <section id="aves" class="menu-section">
+            <div class="section-title text-silver">
+                <i class="fa-solid fa-drumstick-bite"></i> Frango e Aves
+            </div>
+            <img src="https://i.ibb.co/201s76rH/1782083249381.png" alt="Frango e Aves" class="section-image">
+            <div class="product-list">
+                <div class="product-card" data-price="59.99" data-name="Frango recheado">
+                    <div class="product-row">
+                        <i class="fa-solid fa-utensils product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Frango recheado</div>
+                            <div class="product-price">R$ 59,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 59,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="50.00" data-name="Frango semi caipira">
+                    <div class="product-row">
+                        <i class="fa-solid fa-egg product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Frango semi caipira</div>
+                            <div class="product-price">R$ 50,00 <span class="price-unit">/peça</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (peça)</label><input type="number" class="qty-input" value="1" step="1" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 50,00</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="49.99" data-name="Coraçãozinho">
+                    <div class="product-row">
+                        <i class="fa-solid fa-heart product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Coraçãozinho</div>
+                            <div class="product-price">R$ 49,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 49,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="39.99" data-name="Tulipa na mostarda">
+                    <div class="product-row">
+                        <i class="fa-solid fa-flower product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Tulipa na mostarda</div>
+                            <div class="product-price">R$ 39,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 39,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="29.99" data-name="Coxinha da asa">
+                    <div class="product-row">
+                        <i class="fa-solid fa-winged product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Coxinha da asa</div>
+                            <div class="product-price">R$ 29,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 29,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="21.99" data-name="Frango temperado">
+                    <div class="product-row">
+                        <i class="fa-solid fa-meteor product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Frango temperado</div>
+                            <div class="product-price">R$ 21,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 21,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="10.99" data-name="Pé de frango">
+                    <div class="product-row">
+                        <i class="fa-solid fa-football product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Pé de frango</div>
+                            <div class="product-price">R$ 10,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 10,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SUÍNA ==================== -->
+        <section id="suina" class="menu-section">
+            <div class="section-title text-silver">
+                <i class="fa-solid fa-piggy-bank"></i> Carne Suína
+            </div>
+            <img src="https://i.ibb.co/tPXYfRZm/file-00000000a75c720eaf6f640210532317-2.jpg" alt="Carne Suína" class="section-image">
+            <div class="product-list">
+                <div class="product-card" data-price="39.99" data-name="Bacon">
+                    <div class="product-row">
+                        <i class="fa-solid fa-smog product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Bacon</div>
+                            <div class="product-price">R$ 39,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 39,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="38.99" data-name="Torresmo">
+                    <div class="product-row">
+                        <i class="fa-solid fa-bolt product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Torresmo</div>
+                            <div class="product-price">R$ 38,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 38,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="32.99" data-name="Pernil">
+                    <div class="product-row">
+                        <i class="fa-solid fa-drumstick product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Pernil</div>
+                            <div class="product-price">R$ 32,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 32,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="25.99" data-name="Bisteca">
+                    <div class="product-row">
+                        <i class="fa-solid fa-bone product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Bisteca</div>
+                            <div class="product-price">R$ 25,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 25,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="19.99" data-name="Suíno do cerrado">
+                    <div class="product-row">
+                        <i class="fa-solid fa-tree product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Suíno do cerrado</div>
+                            <div class="product-price">R$ 19,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 19,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="16.99" data-name="Suã">
+                    <div class="product-row">
+                        <i class="fa-solid fa-fire product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Suã</div>
+                            <div class="product-price">R$ 16,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 16,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="14.99" data-name="Toucinho p/ banha">
+                    <div class="product-row">
+                        <i class="fa-solid fa-droplet product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Toucinho p/ banha</div>
+                            <div class="product-price">R$ 14,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 14,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+            </div>
+            <a href="https://wa.me/5534991058994" target="_blank" class="ad-space-link">
+                <div class="ad-space">
+                    <div class="ad-content">
+                        <i class="fa-solid fa-bullhorn"></i>
+                        <span class="ad-title">Destaque sua marca aqui!</span>
+                        <span class="ad-sub">Seu negócio visto por centenas de clientes todos os dias.</span>
+                        <span class="ad-whatsapp"><i class="fa-brands fa-whatsapp"></i> Fale conosco: (34) 99105-8994</span>
+                    </div>
+                </div>
+            </a>
+        </section>
+
+        <!-- ==================== LINGUIÇAS ==================== -->
+        <section id="linguicas" class="menu-section">
+            <div class="section-title text-silver">
+                <i class="fa-solid fa-sausage"></i> Linguiças
+            </div>
+            <img src="https://i.ibb.co/spZYNr26/b14ef4c0-6f29-11f1-9f05-994ba1e08442-2.jpg" alt="Linguiças" class="section-image">
+            <div class="product-list">
+                <div class="product-card" data-price="45.99" data-name="Linguiça rúcula com tomate seco">
+                    <div class="product-row">
+                        <i class="fa-solid fa-leaf product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Linguiça rúcula com tomate seco</div>
+                            <div class="product-price">R$ 45,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 45,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="39.99" data-name="Linguiça apimentada">
+                    <div class="product-row">
+                        <i class="fa-solid fa-pepper-hot product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Linguiça apimentada</div>
+                            <div class="product-price">R$ 39,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 39,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="39.99" data-name="Linguiça calabresa">
+                    <div class="product-row">
+                        <i class="fa-solid fa-fire product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Linguiça calabresa</div>
+                            <div class="product-price">R$ 39,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 39,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="37.99" data-name="Linguiça frango com bacon">
+                    <div class="product-row">
+                        <i class="fa-solid fa-drumstick-bite product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Linguiça frango com bacon</div>
+                            <div class="product-price">R$ 37,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 37,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="37.99" data-name="Linguiça jiló e azeitona">
+                    <div class="product-row">
+                        <i class="fa-solid fa-seedling product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Linguiça jiló e azeitona</div>
+                            <div class="product-price">R$ 37,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 37,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="37.99" data-name="Linguiça cuiabana">
+                    <div class="product-row">
+                        <i class="fa-solid fa-utensils product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Linguiça cuiabana</div>
+                            <div class="product-price">R$ 37,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 37,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="34.99" data-name="Linguiça pura">
+                    <div class="product-row">
+                        <i class="fa-solid fa-tag product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Linguiça pura</div>
+                            <div class="product-price">R$ 34,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 34,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== KIT HAMBÚRGUER ==================== -->
+        <section id="kithamburguer" class="menu-section">
+            <div class="section-title text-silver">
+                <i class="fa-solid fa-utensils"></i> Kit Hambúrguer
+            </div>
+            <img src="https://i.ibb.co/HDX7wyKX/ea86f5f0-6f31-11f1-9f05-994ba1e08442.png" alt="Kit Hambúrguer" class="section-image">
+            <div class="product-list">
+                <div class="product-card" data-price="79.99" data-name="Kit Hambúrguer">
+                    <div class="product-row">
+                        <i class="fa-solid fa-burger product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Kit Hambúrguer</div>
+                            <div class="product-price">R$ 79,99</div>
+                            <div style="font-size:0.7rem; color:var(--text-gray); margin-top:2px;">
+                                6 pães · 6 hambúrgueres · cheddar · bacon
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (un)</label><input type="number" class="qty-input" value="1" step="1" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 79,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+            </div>
+            <a href="https://wa.me/5534991058994" target="_blank" class="ad-space-link">
+                <div class="ad-space">
+                    <div class="ad-content">
+                        <i class="fa-solid fa-bullhorn"></i>
+                        <span class="ad-title">Destaque sua marca aqui!</span>
+                        <span class="ad-sub">Seu negócio visto por centenas de clientes todos os dias.</span>
+                        <span class="ad-whatsapp"><i class="fa-brands fa-whatsapp"></i> Fale conosco: (34) 99105-8994</span>
+                    </div>
+                </div>
+            </a>
+        </section>
+
+        <!-- ==================== ESPECIAIS ==================== -->
+        <section id="especiais" class="menu-section">
+            <div class="section-title text-silver">
+                <i class="fa-solid fa-crown"></i> Especiais
+            </div>
+            <img src="https://i.ibb.co/yF8k2Lzt/efcb81f0-6f29-11f1-9f05-994ba1e08442-2.jpg" alt="Especiais" class="section-image">
+            <div class="product-list">
+                <div class="product-card" data-price="54.99" data-name="Frambacon">
+                    <div class="product-row">
+                        <i class="fa-solid fa-bacon product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Frambacon</div>
+                            <div class="product-price">R$ 54,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 54,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="49.99" data-name="Almôndega de Frango">
+                    <div class="product-row">
+                        <i class="fa-solid fa-meatball product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Almôndega de Frango</div>
+                            <div class="product-price">R$ 49,99</div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (un)</label><input type="number" class="qty-input" value="1" step="1" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 49,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="45.99" data-name="Churrascão">
+                    <div class="product-row">
+                        <i class="fa-solid fa-grill-hot product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Churrascão</div>
+                            <div class="product-price">R$ 45,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 45,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="45.99" data-name="Hambúrguer de frango">
+                    <div class="product-row">
+                        <i class="fa-solid fa-hamburger product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Hambúrguer de frango</div>
+                            <div class="product-price">R$ 45,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 45,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="43.99" data-name="Vulcão de frango c/ cheddar">
+                    <div class="product-row">
+                        <i class="fa-solid fa-volcano product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Vulcão de frango c/ cheddar</div>
+                            <div class="product-price">R$ 43,99</div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (un)</label><input type="number" class="qty-input" value="1" step="1" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 43,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="43.99" data-name="Vulcão de frango c/ 4 queijos">
+                    <div class="product-row">
+                        <i class="fa-solid fa-cheese product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Vulcão de frango c/ 4 queijos</div>
+                            <div class="product-price">R$ 43,99</div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (un)</label><input type="number" class="qty-input" value="1" step="1" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 43,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="36.99" data-name="Quibe">
+                    <div class="product-row">
+                        <i class="fa-solid fa-stroopwafel product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Quibe</div>
+                            <div class="product-price">R$ 36,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 36,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== TRADICIONAIS ==================== -->
+        <section id="tradicionais" class="menu-section">
+            <div class="section-title text-silver">
+                <i class="fa-solid fa-utensils"></i> Tradicionais (Feijoada/Cozidos)
+            </div>
+            <img src="https://i.ibb.co/5x1TnYCz/file-000000002c08720eb92a149a5b21de87-2.jpg" alt="Tradicionais" class="section-image">
+            <div class="product-list">
+                <div class="product-card" data-price="37.99" data-name="Rabada">
+                    <div class="product-row">
+                        <i class="fa-solid fa-bone product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Rabada</div>
+                            <div class="product-price">R$ 37,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 37,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="20.99" data-name="Fígado">
+                    <div class="product-row">
+                        <i class="fa-solid fa-cut product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Fígado</div>
+                            <div class="product-price">R$ 20,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 20,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="20.99" data-name="Mocotó">
+                    <div class="product-row">
+                        <i class="fa-solid fa-hotdog product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Mocotó</div>
+                            <div class="product-price">R$ 20,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 20,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="20.99" data-name="Dobradinha">
+                    <div class="product-row">
+                        <i class="fa-solid fa-pizza-slice product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Dobradinha</div>
+                            <div class="product-price">R$ 20,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 20,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="19.99" data-name="Miúdos p/ feijoada">
+                    <div class="product-row">
+                        <i class="fa-solid fa-utensil-spoon product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Miúdos p/ feijoada</div>
+                            <div class="product-price">R$ 19,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 19,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+                <div class="product-card" data-price="16.99" data-name="Pé de porco">
+                    <div class="product-row">
+                        <i class="fa-solid fa-paw product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Pé de porco</div>
+                            <div class="product-price">R$ 16,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 16,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+            </div>
+            <a href="https://wa.me/5534991058994" target="_blank" class="ad-space-link">
+                <div class="ad-space">
+                    <div class="ad-content">
+                        <i class="fa-solid fa-bullhorn"></i>
+                        <span class="ad-title">Destaque sua marca aqui!</span>
+                        <span class="ad-sub">Seu negócio visto por centenas de clientes todos os dias.</span>
+                        <span class="ad-whatsapp"><i class="fa-brands fa-whatsapp"></i> Fale conosco: (34) 99105-8994</span>
+                    </div>
+                </div>
+            </a>
+        </section>
+
+        <!-- ==================== EMPÓRIO ==================== -->
+        <section id="emporio" class="menu-section">
+            <div class="section-title text-silver">
+                <i class="fa-solid fa-cheese"></i> Empório
+            </div>
+            <div class="product-list">
+                <div class="product-card" data-price="79.99" data-name="Queijo provolone">
+                    <div class="product-row">
+                        <i class="fa-solid fa-wine-bottle product-icon"></i>
+                        <div class="product-info">
+                            <div class="product-name">Queijo provolone</div>
+                            <div class="product-price">R$ 79,99 <span class="price-unit">/kg</span></div>
+                        </div>
+                    </div>
+                    <div class="product-controls">
+                        <div class="qty-group"><label>Qtde (kg)</label><input type="number" class="qty-input" value="1" step="0.5" min="0"></div>
+                        <span class="subtotal-display"><span class="subtotal-label">Subtotal</span> R$ 79,99</span>
+                        <button class="btn-add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="footer-info">
+        <p><i class="fa-solid fa-map-pin"></i> Avenida Aspirante Mega, 2352</p>
+        <p><i class="fa-solid fa-clock"></i> Segunda a Sábado: 08:00h às 20:00h</p>
+        <p><i class="fa-solid fa-clock"></i> Domingo: 08:00h às 13:00h</p>
+    </footer>
+
+    <!-- Botões Flutuantes -->
+    <div class="float-buttons">
+        <button class="float-btn order-btn" id="orderButton" aria-label="Meu Pedido">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="cart-badge hidden" id="cartBadge">0</span>
+        </button>
+        <button class="float-btn share-btn" id="shareButton" aria-label="Compartilhar cardápio">
+            <i class="fa-solid fa-share-nodes"></i>
+        </button>
+        <a href="https://wa.me/553432124387" class="float-btn whatsapp-btn" target="_blank" aria-label="Fazer pedido via WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast-notification" id="toastNotification">
+        <i class="fa-solid fa-check-circle"></i>
+        <span id="toastMessage">Você adicionou Picanha</span>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="orderModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalCloseBtn">&times;</button>
+            <h2><i class="fa-solid fa-cart-shopping" style="color:var(--color-gold);"></i> Meu Pedido</h2>
+            <div id="cartItemsContainer">
+                <p style="text-align:center; color:var(--text-gray); padding:20px 0;">Seu carrinho está vazio.</p>
+            </div>
+            <div class="cart-total" id="cartTotal">Total: R$ 0,00</div>
+            <form id="orderForm">
+                <div class="form-group">
+                    <label for="clientName">Seu nome <span style="color:#ff6b6b;">*</span></label>
+                    <input type="text" id="clientName" placeholder="Digite seu nome" required>
+                </div>
+                <div class="form-group">
+                    <label>Forma de pagamento</label>
+                    <div class="radio-group" id="paymentGroup">
+                        <label><input type="radio" name="payment" value="pix" checked> Pix</label>
+                        <label><input type="radio" name="payment" value="cartao"> Cartão de Crédito</label>
+                        <label><input type="radio" name="payment" value="dinheiro"> Dinheiro</label>
+                    </div>
+                    <div class="conditional-field" id="trocoField" style="display:none;">
+                        <label for="troco">Troco para quanto?</label>
+                        <input type="number" id="troco" placeholder="Valor recebido (ex: 100)" step="0.01" min="0">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Opção de entrega</label>
+                    <div class="radio-group" id="deliveryGroup">
+                        <label><input type="radio" name="delivery" value="retirada" checked> Retirada no balcão</label>
+                        <label><input type="radio" name="delivery" value="delivery"> Delivery</label>
+                    </div>
+                    <div class="conditional-field" id="addressField" style="display:none;">
+                        <label for="address">Endereço de entrega <span style="color:#ff6b6b;">*</span></label>
+                        <input type="text" id="address" placeholder="Rua, número, complemento, bairro">
+                    </div>
+                </div>
+                <button type="submit" class="btn-submit-order"><i class="fa-brands fa-whatsapp"></i> Enviar Pedido via WhatsApp</button>
+            </form>
+            <button class="btn-back-menu" id="backToMenuBtn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Cardápio</button>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            let cart = [];
+
+            const cartContainer = document.getElementById('cartItemsContainer');
+            const cartTotalEl = document.getElementById('cartTotal');
+            const orderModal = document.getElementById('orderModal');
+            const modalCloseBtn = document.getElementById('modalCloseBtn');
+            const orderBtn = document.getElementById('orderButton');
+            const orderForm = document.getElementById('orderForm');
+            const cartBadge = document.getElementById('cartBadge');
+            const toast = document.getElementById('toastNotification');
+            const toastMessage = document.getElementById('toastMessage');
+            const backToMenuBtn = document.getElementById('backToMenuBtn');
+
+            let toastTimeout = null;
+
+            function scrollToBovina() {
+                const bovinaSection = document.getElementById('bovina');
+                if (bovinaSection) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const categoriesHeight = document.querySelector('.categories-container').offsetHeight;
+                    const totalOffset = headerHeight + categoriesHeight + 10;
+                    const elementPosition = bovinaSection.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = elementPosition - totalOffset;
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                }
+            }
+
+            function getTotalItems() {
+                return cart.reduce((sum, item) => sum + item.qty, 0);
+            }
+
+            function updateBadge() {
+                const total = getTotalItems();
+                if (total > 0) {
+                    cartBadge.textContent = total;
+                    cartBadge.classList.remove('hidden');
+                } else {
+                    cartBadge.classList.add('hidden');
+                }
+            }
+
+            function showToast(message) {
+                toastMessage.textContent = message;
+                toast.classList.add('show');
+                clearTimeout(toastTimeout);
+                toastTimeout = setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            }
+
+            function addItem(name, price, qty, unit = 'kg') {
+                const existing = cart.find(item => item.name === name && item.unit === unit);
+                if (existing) {
+                    existing.qty += qty;
+                } else {
+                    cart.push({ name, price, qty, unit });
+                }
+                renderCart();
+                updateBadge();
+                showToast(`Você adicionou ${name}`);
+            }
+
+            function removeItem(index) {
+                cart.splice(index, 1);
+                renderCart();
+                updateBadge();
+            }
+
+            function editItem(index) {
+                const item = cart[index];
+                const newQty = prompt(`Editar quantidade de "${item.name}" (atual: ${item.qty} ${item.unit}):`, item.qty);
+                if (newQty !== null) {
+                    const parsed = parseFloat(newQty);
+                    if (!isNaN(parsed) && parsed >= 0) {
+                        if (parsed === 0) {
+                            removeItem(index);
+                        } else {
+                            cart[index].qty = parsed;
+                            renderCart();
+                            updateBadge();
+                        }
+                    } else {
+                        alert('Quantidade inválida.');
+                    }
+                }
+            }
+
+            function getTotal() {
+                return cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            }
+
+            function renderCart() {
+                if (cart.length === 0) {
+                    cartContainer.innerHTML = '<p style="text-align:center; color:var(--text-gray); padding:20px 0;">Seu carrinho está vazio.</p>';
+                    cartTotalEl.textContent = 'Total: R$ 0,00';
+                    return;
+                }
+
+                let html = '';
+                cart.forEach((item, index) => {
+                    const subtotal = (item.price * item.qty).toFixed(2).replace('.', ',');
+                    html += `
+                        <div class="cart-item">
+                            <div class="cart-item-info">
+                                <div class="cart-item-name">${item.name}</div>
+                                <div class="cart-item-detail">${item.qty} ${item.unit} × R$ ${item.price.toFixed(2).replace('.', ',')} = R$ ${subtotal}</div>
+                            </div>
+                            <div class="cart-item-actions">
+                                <button class="edit-btn" data-index="${index}" title="Editar quantidade"><i class="fa-solid fa-pencil"></i></button>
+                                <button class="delete-btn" data-index="${index}" title="Remover item"><i class="fa-solid fa-trash-can"></i></button>
+                            </div>
+                        </div>
+                    `;
+                });
+                cartContainer.innerHTML = html;
+
+                const total = getTotal();
+                cartTotalEl.textContent = `Total: R$ ${total.toFixed(2).replace('.', ',')}`;
+
+                document.querySelectorAll('.edit-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const idx = parseInt(this.dataset.index);
+                        editItem(idx);
+                    });
+                });
+                document.querySelectorAll('.delete-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const idx = parseInt(this.dataset.index);
+                        if (confirm(`Remover "${cart[idx].name}" do carrinho?`)) {
+                            removeItem(idx);
+                        }
+                    });
+                });
+            }
+
+            document.querySelectorAll('.btn-add').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const card = this.closest('.product-card');
+                    if (!card) return;
+                    const name = card.dataset.name || 'Produto';
+                    const price = parseFloat(card.dataset.price);
+                    if (isNaN(price)) return;
+                    const qtyInput = card.querySelector('.qty-input');
+                    let qty = parseFloat(qtyInput.value);
+                    if (isNaN(qty) || qty < 0) qty = 0;
+                    if (qty === 0) {
+                        alert('Quantidade deve ser maior que zero.');
+                        return;
+                    }
+                    const label = card.querySelector('.qty-group label');
+                    let unit = 'kg';
+                    if (label) {
+                        const txt = label.textContent.toLowerCase();
+                        if (txt.includes('peça') || txt.includes('un')) unit = 'un';
+                    }
+
+                    addItem(name, price, qty, unit);
+
+                    const originalHTML = this.innerHTML;
+                    this.classList.add('added');
+                    this.innerHTML = '<i class="fa-solid fa-check"></i> Adicionado!';
+                    setTimeout(() => {
+                        this.classList.remove('added');
+                        this.innerHTML = originalHTML;
+                    }, 2000);
+                });
+            });
+
+            function openModal() {
+                orderModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                renderCart();
+            }
+
+            function closeModal() {
+                orderModal.classList.remove('active');
+                document.body.style.overflow = '';
+                scrollToBovina();
+            }
+
+            orderBtn.addEventListener('click', openModal);
+            modalCloseBtn.addEventListener('click', closeModal);
+            orderModal.addEventListener('click', function(e) {
+                if (e.target === this) closeModal();
+            });
+            backToMenuBtn.addEventListener('click', closeModal);
+
+            const paymentRadios = document.querySelectorAll('input[name="payment"]');
+            const trocoField = document.getElementById('trocoField');
+            paymentRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    trocoField.style.display = (this.value === 'dinheiro') ? 'block' : 'none';
+                });
+            });
+
+            const deliveryRadios = document.querySelectorAll('input[name="delivery"]');
+            const addressField = document.getElementById('addressField');
+            deliveryRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    addressField.style.display = (this.value === 'delivery') ? 'block' : 'none';
+                });
+            });
+
+            orderForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const nome = document.getElementById('clientName').value.trim();
+                if (!nome) {
+                    alert('Por favor, preencha seu nome.');
+                    return;
+                }
+                if (cart.length === 0) {
+                    alert('Seu carrinho está vazio.');
+                    return;
+                }
+
+                const payment = document.querySelector('input[name="payment"]:checked').value;
+                let pagamentoStr = '';
+                if (payment === 'pix') pagamentoStr = 'Pix';
+                else if (payment === 'cartao') pagamentoStr = 'Cartão de Crédito';
+                else if (payment === 'dinheiro') {
+                    const troco = document.getElementById('troco').value.trim();
+                    if (!troco) {
+                        alert('Informe o valor para troco.');
+                        return;
+                    }
+                    pagamentoStr = `Dinheiro (troco para R$ ${troco})`;
+                }
+
+                const delivery = document.querySelector('input[name="delivery"]:checked').value;
+                let entregaStr = '';
+                if (delivery === 'retirada') {
+                    entregaStr = 'Retirada no balcão';
+                } else {
+                    const endereco = document.getElementById('address').value.trim();
+                    if (!endereco) {
+                        alert('Informe o endereço de entrega.');
+                        return;
+                    }
+                    entregaStr = `Delivery - Endereço: ${endereco}`;
+                }
+
+                let itensStr = '';
+                cart.forEach(item => {
+                    const subtotal = (item.price * item.qty).toFixed(2).replace('.', ',');
+                    itensStr += `${item.qty} ${item.unit} de ${item.name} - R$ ${subtotal}\n`;
+                });
+                const total = getTotal().toFixed(2).replace('.', ',');
+
+                const mensagem = `
+*Knychala Açougue e Empório - NOVO PEDIDO*
+
+*Cliente:* ${nome}
+*Itens:* 
+${itensStr}
+*Total:* R$ ${total}
+
+*Pagamento:* ${pagamentoStr}
+*Entrega:* ${entregaStr}
+
+Aguardamos sua confirmação!
+                `.trim();
+
+                const msgEncoded = encodeURIComponent(mensagem);
+                const whatsappUrl = `https://wa.me/553432124387?text=${msgEncoded}`;
+                window.open(whatsappUrl, '_blank');
+
+                cart = [];
+                renderCart();
+                updateBadge();
+                closeModal();
+                document.getElementById('clientName').value = '';
+                document.getElementById('troco').value = '';
+                document.getElementById('address').value = '';
+                document.querySelector('input[name="payment"][value="pix"]').checked = true;
+                document.querySelector('input[name="delivery"][value="retirada"]').checked = true;
+                trocoField.style.display = 'none';
+                addressField.style.display = 'none';
+
+                alert('Pedido enviado via WhatsApp!');
+            });
+
+            // ---------- Abas ----------
+            const tabs = document.querySelectorAll('.category-item');
+            const sections = document.querySelectorAll('.menu-section');
+            const scrollContainer = document.querySelector('.categories-scroll');
+
+            function activateTab(targetId, tabElement) {
+                tabs.forEach(tab => tab.classList.remove('active'));
+                sections.forEach(sec => sec.classList.remove('active'));
+
+                const activeTab = tabElement || document.querySelector(`.category-item[data-target="${targetId}"]`);
+                if (activeTab) {
+                    activeTab.classList.add('active');
+                    if (scrollContainer) {
+                        const containerWidth = scrollContainer.offsetWidth;
+                        const tabWidth = activeTab.offsetWidth;
+                        const scrollLeft = activeTab.offsetLeft - (containerWidth / 2) + (tabWidth / 2);
+                        scrollContainer.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+                    }
+                }
+
+                const activeSection = document.getElementById(targetId);
+                if (activeSection) {
+                    activeSection.classList.add('active');
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const categoriesHeight = document.querySelector('.categories-container').offsetHeight;
+                    const totalOffset = headerHeight + categoriesHeight + 10;
+                    const elementPosition = activeSection.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = elementPosition - totalOffset;
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                }
+            }
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function(e) {
+                    const target = this.dataset.target;
+                    if (target) {
+                        activateTab(target, this);
+                    }
+                });
+            });
+
+            const firstActive = document.querySelector('.category-item.active');
+            if (!firstActive) {
+                const firstTab = tabs[0];
+                if (firstTab) {
+                    firstTab.classList.add('active');
+                    const firstTarget = firstTab.dataset.target;
+                    if (firstTarget) {
+                        const firstSection = document.getElementById(firstTarget);
+                        if (firstSection) firstSection.classList.add('active');
+                    }
+                }
+            } else {
+                const target = firstActive.dataset.target;
+                if (target) {
+                    const section = document.getElementById(target);
+                    if (section) section.classList.add('active');
+                }
+                if (scrollContainer) {
+                    setTimeout(() => {
+                        const containerWidth = scrollContainer.offsetWidth;
+                        const tabWidth = firstActive.offsetWidth;
+                        const scrollLeft = firstActive.offsetLeft - (containerWidth / 2) + (tabWidth / 2);
+                        scrollContainer.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+                    }, 100);
+                }
+            }
+
+            document.querySelectorAll('.qty-input').forEach(input => {
+                const card = input.closest('.product-card');
+                if (!card) return;
+                const price = parseFloat(card.dataset.price);
+                if (isNaN(price)) return;
+                const subtotalSpan = card.querySelector('.subtotal-display');
+                if (!subtotalSpan) return;
+
+                function updateSubtotal() {
+                    let qty = parseFloat(input.value);
+                    if (isNaN(qty) || qty < 0) qty = 0;
+                    const total = price * qty;
+                    const formatted = total.toFixed(2).replace('.', ',');
+                    subtotalSpan.innerHTML = `<span class="subtotal-label">Subtotal</span> R$ ${formatted}`;
+                }
+                input.addEventListener('input', updateSubtotal);
+                input.addEventListener('change', updateSubtotal);
+                updateSubtotal();
+            });
+
+            document.getElementById('shareButton').addEventListener('click', function() {
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'Cardápio Knychala Açougue e Empório',
+                        text: 'Confira o cardápio premium do Knychala Açougue e Empório!',
+                        url: window.location.href
+                    }).catch(() => {});
+                } else {
+                    const url = window.location.href;
+                    navigator.clipboard.writeText(url).then(() => {
+                        alert('Link copiado para a área de transferência!');
+                    }).catch(() => {
+                        alert('Compartilhe este link: ' + url);
+                    });
+                }
+            });
+
+            updateBadge();
+        })();
+    </script>
+
+</body>
+</html>
